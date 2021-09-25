@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 function MainPage(props) {
-  const onclick = (e) => {};
+ 
+  const user = props.user;
+  console.log('user', user);
   return (
     <div className="timeline">
       {props.user ? (
