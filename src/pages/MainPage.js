@@ -2,8 +2,6 @@ import React, { useRef, useState } from 'react';
 import axios from 'axios';
 
 function MainPage(props) {
-  const user = props.user;
-  console.log('user', props);
   return (
     <div className="timeline">
       {props.user ? (
