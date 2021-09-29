@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { increase, decrease } from '../modules/counter';
-import CounterComponent from '../component/CounterComponent';
+import CounterComponent from '../components/CounterComponent';
 
 function CounterContainer({ number, increase, decrease }) {
   return (

@@ -1,4 +1,5 @@
 import { createAction, handleActions } from 'redux-actions';
+import { startLoading, finish, finishLoading } from './loading';
 import { takeLatest } from 'redux-saga/effects';
 import * as api from '../lib/api';
 
@@ -13,26 +14,29 @@ const GET_USERS_FAILURE = 'sample/GET_USERS_FAILURE';
 
 export const getPost = (id) => async (dispatch) => {
   dispatch({ type: GET_POST });
-
+  dispatch(startLoading({ type: GET_POST }));
   try {
     const response = await api.getPost(id);
+    console.log('response data:', response.data);
     dispatch({ type: GET_POST_SUCCESS, payload: response.data });
+    dispatch(finishLoading({ type: GET_POST_SUCCESS }));
   } catch (e) {
     dispatch({ type: GET_POST_SUCCESS, payload: e, error: true });
+    dispatch(finishLoading({ type: GET_POST_FAILURE }));
     throw e;
   }
 };
 
-// export const getUsers = () => async (dispatch) => {
-//   dispatch({ type: GET_POST });
-//   try {
-//     const response = await api.getUsers();
-//     dispatch({ type: GET_USERS_SUCCESS, payload: response.data });
-//   } catch (e) {
-//     dispatch({ type: GET_USERS_FAILURE, payload: e, error: true });
-//     throw e;
-//   }
-// };
+export const getUsers = () => async (dispatch) => {
+  dispatch({ type: GET_POST });
+  try {
+    const response = await api.getUsers();
+    dispatch({ type: GET_USERS_SUCCESS, payload: response.data });
+  } catch (e) {
+    dispatch({ type: GET_USERS_FAILURE, payload: e, error: true });
+    throw e;
+  }
+};
 
 const initialState = {
   loading: {
@@ -45,7 +49,10 @@ const initialState = {
 
 const sample = handleActions(
   {
-    [GET_POST]: (state) => ({ ...state, GET_POST: true }),
+    [GET_POST]: (state) => ({
+      ...state,
+      loading: { ...state.loading, GET_POST: true },
+    }),
     [GET_POST_SUCCESS]: (state) => ({
       ...state,
       loading: { ...state.loading, get_post: false },

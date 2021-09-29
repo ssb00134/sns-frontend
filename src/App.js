@@ -10,9 +10,17 @@ import CounterContainer from './container/CounterContainer';
 import SampleContainer from './container/SampleContainer';
 
 function App() {
+  function* sumgenerator() {
+    console.log('sumgenerator() 실행');
+    let a = yield;
+    let b = yield;
+    yield a + b;
+  }
+  const sum = sumgenerator();
+  sum.next();
   return (
     <div className="App">
-      <CounterContainer />
+      {/*<CounterContainer />*/}
       <SampleContainer />
       <Route component={MainPage} path="/" exact={true}></Route>
       <Route component={LayoutPage} path="/LayoutPage"></Route>
