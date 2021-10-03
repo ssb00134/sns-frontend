@@ -1,12 +1,15 @@
 import { combineReducers } from 'redux';
-import counter from './counter';
+
 import sample from './sample';
 import loading from './loading';
+import counter from './counter';
+import post from './post';
 
 const rootReducer = combineReducers({
-  counter,
   sample,
   loading,
+  counter,
+  post,
 });
 
 export default rootReducer;

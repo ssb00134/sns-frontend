@@ -1,18 +1,11 @@
-import { createAction, handleActions } from 'redux-actions';
+import { createReducer, createAction } from '@reduxjs/toolkit';
 
-const INCREASE = 'couter/INCREASE';
-const DECREASE = 'couter/DECREASE';
+const increment = createAction('INCREASEMENT');
+const decrement = createAction('DECREASEMENT');
 
-export const increase = createAction(INCREASE);
-export const decrease = createAction(DECREASE);
+const counter = createReducer(0, {
+  [increment]: (state) => state + 1,
+  [decrement]: (state) => state + 1,
+});
 
-const initialState = 0;
-
-const counter = handleActions(
-  {
-    [INCREASE]: (state) => state + 1,
-    [DECREASE]: (state) => state - 1,
-  },
-  initialState,
-);
 export default counter;

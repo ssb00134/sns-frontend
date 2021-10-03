@@ -5,7 +5,7 @@ const Sample = ({ post, users, loadingPost, loadingUsers }) => {
   return (
     <div>
       <section>
-        <h1>포스트1213231{post}</h1>
+        <h1>포스트{post}</h1>
         {loadingPost && '로딩중...'}
         {!loadingPost && post && (
           <div>
