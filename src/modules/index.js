@@ -1,15 +1,8 @@
-import { combineReducers } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 
-import sample from './sample';
-import loading from './loading';
-import counter from './counter';
-import post from './post';
+import logger from 'redux-logger';
 
-const rootReducer = combineReducers({
-  sample,
-  loading,
-  counter,
-  post,
+export default configureStore({
+  reducer: {},
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
-
-export default rootReducer;

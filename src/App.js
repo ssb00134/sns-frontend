@@ -6,12 +6,11 @@ import MainPage from './pages/MainPage';
 import LayoutPage from './pages/LayoutPage';
 import { useEffect, useState } from 'react';
 import axios from '../node_modules/axios/index';
-import SampleContainer from './container/SampleContainer';
+import { usedispatch, useSelector } from 'react-redux';
+
 function App() {
   return (
     <div className="App">
-      {/*<CounterContainer />*/}
-      <SampleContainer />
       <Route component={MainPage} path="/" exact={true}></Route>
       <Route component={LayoutPage} path="/LayoutPage"></Route>
     </div>
