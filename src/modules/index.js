@@ -1,8 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
 
-import logger from 'redux-logger';
-
-export default configureStore({
-  reducer: {},
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+import recipesReducer from './recipes';
+import twitsReducer from './twits';
+const rootReducer = combineReducers({
+  recipes: recipesReducer,
+  twits: twitsReducer,
 });
+
+export default rootReducer;
